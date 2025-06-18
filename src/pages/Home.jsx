@@ -1,4 +1,3 @@
-// src/pages/Home.jsx
 import { useProfile } from '../ProfileContext'
 import { supabase } from '../supabase'
 
@@ -6,7 +5,7 @@ function Home() {
   const { profile, loading } = useProfile()
 
   const handleLogout = async () => {
-    await supabase.auth.signOut({ scope: 'local' })  // ✅ 清除 local session，避免自動登入
+    await supabase.auth.signOut()
     window.location.href = '/'  // 回首頁重新觸發登入判斷
   }
 
@@ -15,7 +14,6 @@ function Home() {
   return (
     <div>
       <h2>🍳 歡迎來到主畫面！</h2>
-
       {profile ? (
         <div style={{ marginTop: '16px' }}>
           <p><strong>姓名：</strong>{profile.name}</p>
@@ -30,16 +28,7 @@ function Home() {
 
       {/* ⬇️ 登出按鈕放在最底下 */}
       <div style={{ marginTop: '32px', textAlign: 'center' }}>
-        <button onClick={handleLogout} style={{
-          backgroundColor: '#ffdddd',
-          color: '#444',
-          padding: '10px 24px',
-          borderRadius: '8px',
-          border: 'none',
-          fontSize: '1rem',
-          cursor: 'pointer',
-          marginTop: '24px'
-        }}>
+        <button onClick={handleLogout} style={{ backgroundColor: '#ffdddd', color: '#444' }}>
           登出
         </button>
       </div>
