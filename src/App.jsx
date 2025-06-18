@@ -13,19 +13,41 @@ import Rules from './pages/Rules'
 
 function App() {
   const [session, setSession] = useState(null)
+  const [initialLoading, setInitialLoading] = useState(true) // ⬅️ 初次載入狀態
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => setSession(data.session))
+    const loadSession = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession()
+
+      // ✅ 只接受登入過的 session
+      if (session?.provider_token) {
+        setSession(session)
+      } else {
+        setSession(null)
+      }
+
+      setInitialLoading(false)
+    }
+
+    loadSession()
+
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session)
     })
+
     return () => listener?.subscription.unsubscribe()
   }, [])
 
+  // ✅ 修改這裡：使用 global 清除所有登入狀態
   const handleLogout = async () => {
-    await supabase.auth.signOut()
-    setSession(null) // ✅ 登出時清空 session
+    await supabase.auth.signOut({ scope: 'global' })
+    setSession(null)
+    window.location.href = '/' // 回首頁刷新
   }
+
+  if (initialLoading) return null // 或 return <p>載入中...</p>
 
   if (!session) {
     return (
@@ -33,7 +55,11 @@ function App() {
         <h1>🍳 歡迎來到蛋研社網站！</h1>
         <LoginForm
           onLogin={() =>
-            supabase.auth.getSession().then(({ data }) => setSession(data.session))
+            supabase.auth.getSession().then(({ data }) => {
+              if (data.session?.provider_token) {
+                setSession(data.session)
+              }
+            })
           }
         />
       </div>
@@ -46,7 +72,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<TabLayout session={session} onLogout={handleLogout} />} // ✅ 傳給 TabLayout
+            element={<TabLayout session={session} onLogout={handleLogout} />}
           >
             <Route index element={<Home />} />
             <Route path="calendar" element={<Calendar />} />
