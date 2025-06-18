@@ -13,6 +13,7 @@ import Rules from './pages/Rules'
 
 function App() {
   const [session, setSession] = useState(null)
+  const [initialLoading, setInitialLoading] = useState(true) // ⬅️ 初次載入狀態
 
   useEffect(() => {
     const loadSession = async () => {
@@ -20,12 +21,14 @@ function App() {
         data: { session },
       } = await supabase.auth.getSession()
 
-      // ✅ 僅接受有 provider_token 的 session，避免自動登入
+      // ✅ 只接受登入過的 session
       if (session?.provider_token) {
         setSession(session)
       } else {
         setSession(null)
       }
+
+      setInitialLoading(false)
     }
 
     loadSession()
@@ -33,14 +36,18 @@ function App() {
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session)
     })
+
     return () => listener?.subscription.unsubscribe()
   }, [])
 
+  // ✅ 修改這裡：使用 global 清除所有登入狀態
   const handleLogout = async () => {
-    await supabase.auth.signOut({ scope: 'local' }) // ✅ 清除 local 登入
+    await supabase.auth.signOut({ scope: 'global' })
     setSession(null)
-    window.location.href = '/' // 強制 reload 回首頁
+    window.location.href = '/' // 回首頁刷新
   }
+
+  if (initialLoading) return null // 或 return <p>載入中...</p>
 
   if (!session) {
     return (
