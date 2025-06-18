@@ -1,67 +1,63 @@
-import { useEffect, useState } from 'react';
-import { supabase } from './supabase';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { supabase } from './supabase'
+import { ProfileProvider } from './ProfileContext'
+
+import TabLayout from './TabLayout'
+import LoginForm from './components/LoginForm'
+import Home from './pages/Home'
+import Calendar from './pages/Calendar'
+import TestZone from './pages/TestZone'
+import Blog from './pages/Blog'
+import Rules from './pages/Rules'
 
 function App() {
-  const [members, setMembers] = useState([]);
-  const [errorMsg, setErrorMsg] = useState('');
+  const [session, setSession] = useState(null)
 
   useEffect(() => {
-    async function fetchMembers() {
-      const { data, error } = await supabase
-        .from('社團名單') // 或 'members'，看你的表名
-        .select('*')
-        .order('year', { ascending: false });
+    supabase.auth.getSession().then(({ data }) => setSession(data.session))
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+    return () => listener?.subscription.unsubscribe()
+  }, [])
 
-      console.log('🔥 Supabase 回傳資料:', data);
-      console.log('❌ 錯誤:', error);
+  const handleLogout = async () => {
+    await supabase.auth.signOut()
+    setSession(null) // ✅ 登出時清空 session
+  }
 
-      if (error) {
-        setErrorMsg('資料抓取失敗：' + error.message);
-      } else if (data.length === 0) {
-        setErrorMsg('資料表是空的（0 筆資料）');
-      } else {
-        setMembers(data);
-      }
-    }
-
-    fetchMembers();
-  }, []);
+  if (!session) {
+    return (
+      <div style={{ padding: '32px' }}>
+        <h1>🍳 歡迎來到蛋研社網站！</h1>
+        <LoginForm
+          onLogin={() =>
+            supabase.auth.getSession().then(({ data }) => setSession(data.session))
+          }
+        />
+      </div>
+    )
+  }
 
   return (
-    <div style={{ padding: '24px' }}>
-      <h1>🍳 歡迎來到蛋研社網站！</h1>
-      <p>這是我們的首頁，之後可以放活動、心得、食譜分享！</p>
-
-      <h2 style={{ marginTop: '32px' }}>🥚 蛋研社會員名單</h2>
-
-      {errorMsg ? (
-        <p style={{ color: 'red' }}>{errorMsg}</p>
-      ) : (
-        <table border="1" cellPadding="8">
-          <thead>
-            <tr>
-              <th>名字</th>
-              <th>系級</th>
-              <th>家別</th>
-              <th>身份</th>
-              <th>屆別</th>
-            </tr>
-          </thead>
-          <tbody>
-            {members.map((m) => (
-              <tr key={m.id}>
-                <td>{m.name}</td>
-                <td>{m.major}</td>
-                <td>{m.family}</td>
-                <td>{m.identity}</td>
-                <td>{m.year}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-    </div>
-  );
+    <ProfileProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={<TabLayout session={session} onLogout={handleLogout} />} // ✅ 傳給 TabLayout
+          >
+            <Route index element={<Home />} />
+            <Route path="calendar" element={<Calendar />} />
+            <Route path="test" element={<TestZone />} />
+            <Route path="blog" element={<Blog />} />
+            <Route path="rules" element={<Rules />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </ProfileProvider>
+  )
 }
 
-export default App;
+export default App
