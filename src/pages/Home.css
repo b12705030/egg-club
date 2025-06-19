@@ -1,0 +1,54 @@
+.announcement-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.announcement-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 16px;
+  position: relative;
+}
+
+.announcement-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tag {
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  color: white;
+}
+
+.tag.closed {
+  background-color: #d16b6b;
+}
+
+.tag.event {
+  background-color: #82bfb7;
+}
+
+.announcement-footer {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #999;
+  text-align: right;
+}
+
+/* src/pages/Home.css */
+.home-container {
+  background-color: #fff8f0; /* ✅ 統一背景 */
+  min-height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.home-content {
+  padding: 16px;
+}

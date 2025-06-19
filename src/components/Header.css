@@ -1,0 +1,37 @@
+/* src/components/Header.css */
+.header-bar {
+  position: relative;
+  width: 100%; /* ✅ 強制撐滿整個視窗寬度 */
+  background-color: #fff3e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  box-sizing: border-box;
+}
+
+.header-bar .left {
+  font-size: 18px;
+  font-weight: bold;
+  color: #5c3b1e;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-bar .right .header-btn {
+  background-color: #5c3b1e;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.header-bar .right .header-btn:hover {
+  background-color: #3e2814;
+}

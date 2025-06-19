@@ -24,10 +24,9 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  background-color: #fff8f0; /* 🌼 奶茶底色 */
+  color: #3f2e1e;            /* 深咖啡文字 */
+  font-family: "Segoe UI", "Helvetica", "Arial", sans-serif;
 }
 
 h1 {
@@ -36,18 +35,18 @@ h1 {
 }
 
 button {
+  background-color: #fddfce;
+  color: #5c3b1e;
+  border: none;
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 1rem;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: background-color 0.2s ease;
 }
 button:hover {
-  border-color: #646cff;
+  background-color: #fcbda6;
 }
 button:focus,
 button:focus-visible {
@@ -71,4 +70,5 @@ html, body, #root, .app-container {
   height: 100%;
   margin: 0;
   padding: 0;
+  background-color: #fff8f0; /* 奶茶底色 */
 }
