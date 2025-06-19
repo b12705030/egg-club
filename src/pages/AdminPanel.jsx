@@ -41,7 +41,7 @@ function AdminPanel() {
 
   return (
     <div className="admin-panel">
-      <h2><PiChalkboardTeacherDuotone /> 幹部專區：新增公告</h2>
+      <h2 style={{ fontSize: '24px', fontWeight: '900' }}><PiChalkboardTeacherDuotone /> 幹部專區：新增公告</h2>
       <form className="admin-form" onSubmit={handleSubmit}>
         <label>
           標題：
