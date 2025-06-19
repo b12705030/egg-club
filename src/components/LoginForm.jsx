@@ -24,7 +24,7 @@ function LoginForm({ onLogin }) {
 
   return (
     <div style={{ maxWidth: '400px', margin: 'auto', padding: '32px' }}>
-      <h2>登入</h2>
+      <h2 style={{ fontSize: '24px', fontWeight: '900' }}>登入</h2>
       <form onSubmit={handleLogin}>
         <input
           type="email"
