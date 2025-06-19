@@ -10,6 +10,7 @@ import Calendar from './pages/Calendar'
 import TestZone from './pages/TestZone'
 import Blog from './pages/Blog'
 import Rules from './pages/Rules'
+import AdminPanel from './pages/AdminPanel'
 
 function App() {
   const [session, setSession] = useState(null)
@@ -81,6 +82,7 @@ function App() {
             <Route path="test" element={<TestZone />} />
             <Route path="blog" element={<Blog />} />
             <Route path="rules" element={<Rules />} />
+            <Route path="admin" element={<AdminPanel />} />
           </Route>
         </Routes>
       </BrowserRouter>
