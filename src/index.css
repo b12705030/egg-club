@@ -1,3 +1,9 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -24,7 +30,7 @@ a:hover {
 
 body {
   margin: 0;
-  background-color: #fff8f0; /* 🌼 奶茶底色 */
+  background-color: #F2E6D5; /* 🌼 奶茶底色 */
   color: #3f2e1e;            /* 深咖啡文字 */
   font-family: "Segoe UI", "Helvetica", "Arial", sans-serif;
 }
@@ -70,5 +76,16 @@ html, body, #root, .app-container {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #fff8f0; /* 奶茶底色 */
+  background-color: #F2E6D5; /* 奶茶底色 */
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
 }

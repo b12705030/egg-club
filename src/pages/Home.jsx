@@ -26,7 +26,7 @@ function Home() {
       <Header />
 
       <div className="home-content"> {/* ✅ 內部內容包一層 */}
-        <h2 style={{ marginTop: '16px' }}>📢 最新消息</h2>
+        <h2 style={{ marginTop: '16px' }}>最新消息</h2>
 
         {announcements.length === 0 ? (
           <p>目前尚無公告。</p>

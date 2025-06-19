@@ -2,7 +2,7 @@
 .header-bar {
   position: relative;
   width: 100%; /* ✅ 強制撐滿整個視窗寬度 */
-  background-color: #fff3e0;
+  background-color: #ffffff;
   display: flex;
   justify-content: space-between;
   align-items: center;

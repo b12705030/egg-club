@@ -1,7 +1,13 @@
 // src/TabLayout.jsx
 import { NavLink, Outlet } from 'react-router-dom'
-import { FaHome, FaCalendarAlt, FaFlask, FaBook, FaGavel } from 'react-icons/fa'
 import './styles/TabLayout.css'
+import { FaHome, FaCalendarAlt, FaUsers, FaBookOpen, FaFileAlt } from 'react-icons/fa'
+import { TiHome } from 'react-icons/ti'
+import { HiMiniCalendarDateRange } from "react-icons/hi2"
+import { FaKitchenSet } from "react-icons/fa6"
+import { LuCakeSlice } from "react-icons/lu"
+import { FaListCheck } from "react-icons/fa6"
+
 
 function TabLayout() {
   return (
@@ -9,26 +15,27 @@ function TabLayout() {
       <div className="main-content">
         <Outlet />
       </div>
+
       <nav className="tab-bar">
-        <NavLink to="/" end className={({ isActive }) => isActive ? 'active' : ''}>
-          <FaHome size={20} />
+        <NavLink to="/" end>
+          <TiHome />
           <span>首頁</span>
         </NavLink>
-        <NavLink to="/calendar" className={({ isActive }) => isActive ? 'active' : ''}>
-          <FaCalendarAlt size={20} />
+        <NavLink to="/calendar">
+          <HiMiniCalendarDateRange />
           <span>行事曆</span>
         </NavLink>
-        <NavLink to="/test" className={({ isActive }) => isActive ? 'active' : ''}>
-          <FaFlask size={20} />
-          <span>試做</span>
+        <NavLink to="/test">
+          <FaKitchenSet />
+          <span>試作</span>
         </NavLink>
-        <NavLink to="/blog" className={({ isActive }) => isActive ? 'active' : ''}>
-          <FaBook size={20} />
-          <span>部落格</span>
+        <NavLink to="/blog">
+          <LuCakeSlice />
+          <span>食譜集</span>
         </NavLink>
-        <NavLink to="/rules" className={({ isActive }) => isActive ? 'active' : ''}>
-          <FaGavel size={20} />
-          <span>規則</span>
+        <NavLink to="/rules">
+          <FaListCheck />
+          <span>其他</span>
         </NavLink>
       </nav>
     </div>
