@@ -21,11 +21,27 @@ function Home() {
     fetchAnnouncements()
   }, [])
 
+  // ✅ 新增：根據 type 決定樣式
+  const getTagClass = (type) => {
+    switch (type) {
+      case '封廚房':
+        return 'tag closed'
+      case '活動':
+        return 'tag event'
+      case '社課':
+        return 'tag club'
+      case '截止日':
+        return 'tag deadline'
+      default:
+        return 'tag'
+    }
+  }
+
   return (
-    <div className="home-container"> {/* ✅ 外層固定全寬背景 */}
+    <div className="home-container">
       <Header />
 
-      <div className="home-content"> {/* ✅ 內部內容包一層 */}
+      <div className="home-content">
         <h2 style={{ marginTop: '16px' }}>最新消息</h2>
 
         {announcements.length === 0 ? (
@@ -37,7 +53,7 @@ function Home() {
                 <div className="announcement-text">
                   <strong>{item.title}</strong>
                   <div className="announcement-meta">
-                    <span className={`tag ${item.type === '封廚房' ? 'closed' : 'event'}`}>
+                    <span className={getTagClass(item.type)}>
                       {item.type}
                     </span>
                     <span className="announcement-footer">{item.date}</span>

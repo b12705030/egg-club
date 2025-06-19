@@ -47,10 +47,20 @@
   background-color: #82bfb7;
 }
 
+.tag.club {
+  background-color: #b5c773;
+}
+
+.tag.deadline {
+  background-color: #969695;
+}
+
+
 .announcement-footer {
   color: #999;
   font-size: 12px;
   white-space: nowrap;
+  font-weight: bold;
 }
 
 /* src/pages/Home.css */
