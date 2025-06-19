@@ -36,11 +36,13 @@ function Home() {
               <div key={item.id} className="announcement-card">
                 <div className="announcement-text">
                   <strong>{item.title}</strong>
-                  <span className={`tag ${item.type === '封廚房' ? 'closed' : 'event'}`}>
-                    {item.type}
-                  </span>
+                  <div className="announcement-meta">
+                    <span className={`tag ${item.type === '封廚房' ? 'closed' : 'event'}`}>
+                      {item.type}
+                    </span>
+                    <span className="announcement-footer">{item.date}</span>
+                  </div>
                 </div>
-                <div className="announcement-footer">{item.date}</div>
               </div>
             ))}
           </div>

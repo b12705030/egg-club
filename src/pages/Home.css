@@ -15,15 +15,28 @@
 
 .announcement-text {
   display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.announcement-text strong {
+  font-size: 15px;
+  color: #333;
+}
+
+.announcement-meta {
+  display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 12px;
 }
 
 .tag {
-  padding: 4px 8px;
+  padding: 4px 10px;
   border-radius: 8px;
   font-size: 12px;
   color: white;
+  font-weight: bold;
 }
 
 .tag.closed {
@@ -35,10 +48,9 @@
 }
 
 .announcement-footer {
-  margin-top: 8px;
-  font-size: 12px;
   color: #999;
-  text-align: right;
+  font-size: 12px;
+  white-space: nowrap;
 }
 
 /* src/pages/Home.css */
