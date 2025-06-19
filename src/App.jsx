@@ -52,7 +52,9 @@ function App() {
   if (!session) {
     return (
       <div style={{ padding: '32px' }}>
-        <h1>🍳 歡迎來到蛋研社網站！</h1>
+        <h1 style={{ fontSize: '20px', fontWeight: 'bold' }}>
+          🍳 歡迎來到蛋研社網站！
+        </h1>
         <LoginForm
           onLogin={() =>
             supabase.auth.getSession().then(({ data }) => {
