@@ -52,10 +52,7 @@ function App() {
   if (!session) {
     return (
       <div style={{ padding: '32px' }}>
-        <h1 style={{ fontSize: '30px', fontWeight: '400' }}>
-          🍳 歡迎來到蛋研社網站！
-        </h1>
-        <h1 style={{ fontSize: '30px', fontWeight: '900' }}>
+        <h1 style={{ fontSize: '24px', fontWeight: '900' }}>
           🍳 歡迎來到蛋研社網站！
         </h1>
         <LoginForm
