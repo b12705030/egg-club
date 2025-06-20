@@ -40,11 +40,11 @@ function CalendarPage() {
     const key = date.toISOString().slice(0, 10)
     const type = markedDates[key]
     return {
-      '封廚房': 'tag-closed',
-      '活動': 'tag-event',
-      '社課': 'tag-club',
-      '截止日': 'tag-deadline'
-    }[type] || null
+      '封廚房': 'tile-closed',
+      '活動': 'tile-event',
+      '社課': 'tile-club',
+      '截止日': 'tile-deadline',
+    }[type] || null;
   }
 
   return (

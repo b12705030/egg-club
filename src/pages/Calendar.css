@@ -17,6 +17,12 @@
   font-family: 'Segoe UI', sans-serif;
 }
 
+/* ✅ 日曆 tile 格式修正（確保顯示一致） */
+.react-calendar__tile {
+  padding: 6px 0;
+  text-align: center;
+}
+
 /* ✅ 統一圓形樣式：讓各 tile 不壓縮，適應手機寬度 */
 .tile-club abbr,
 .tile-event abbr,
@@ -74,9 +80,3 @@
 .dot.event { background: #cfe9f2; }
 .dot.closed { background: #f3d2d2; }
 .dot.deadline { background: #eee; border: 1px solid #999; }
-
-/* ✅ 讓日曆 tile 不壓縮文字、居中對齊 */
-.react-calendar__tile {
-  padding: 6px 0;
-  text-align: center;
-}
