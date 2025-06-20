@@ -1,38 +1,39 @@
-import { useState } from 'react';
-import { supabase } from '../supabase';
+// src/components/LoginForm.jsx
+import { useState } from 'react'
+import { supabase } from '../supabase'
+import './LoginForm.css'  // 新增的樣式檔
 
 function LoginForm({ onLogin }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
 
   const handleLogin = async (e) => {
-    e.preventDefault();
-    setError('');
+    e.preventDefault()
+    setError('')
 
-    const { data, error } = await supabase.auth.signInWithPassword({
+    const { error } = await supabase.auth.signInWithPassword({
       email,
       password
-    });
+    })
 
     if (error) {
-      setError(error.message);
+      setError(error.message)
     } else {
-      onLogin();  // 通知 App 登入狀態更新
+      onLogin()
     }
-  };
+  }
 
   return (
-    <div style={{ maxWidth: '400px', margin: 'auto', padding: '32px' }}>
-      <h2 style={{ fontSize: '24px', fontWeight: '900' }}>登入</h2>
-      <form onSubmit={handleLogin}>
+    <div className="login-wrapper">
+      <h2 className="login-title">登入系統</h2>
+      <form onSubmit={handleLogin} className="login-form">
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          style={{ width: '100%', marginBottom: '12px' }}
         />
         <input
           type="password"
@@ -40,16 +41,13 @@ function LoginForm({ onLogin }) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          style={{ width: '100%', marginBottom: '12px' }}
         />
-        <button type="submit" style={{ width: '100%' }}>登入</button>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+        <button type="submit">登入</button>
+        {error && <p className="login-error">{error}</p>}
       </form>
-      <p style={{ marginTop: '12px' }}>
-        若忘記密碼請聯絡管理員。
-      </p>
+      <p className="login-note">若忘記密碼請聯絡管理員。</p>
     </div>
-  );
+  )
 }
 
-export default LoginForm;
+export default LoginForm
