@@ -39,8 +39,6 @@ function Home() {
 
   return (
     <div className="home-container">
-      <Header />
-
       <div className="home-content">
         <h2 style={{ marginTop: '16px' }}>最新消息</h2>
 

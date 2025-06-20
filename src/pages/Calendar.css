@@ -1,0 +1,74 @@
+/* 外層樣式 */
+.calendar-wrapper {
+  padding: 24px;
+  background: #f3e6d5; /* 奶茶色底 */
+  min-height: 100vh;
+}
+
+/* react-calendar 本體樣式 */
+.react-calendar {
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 16px;
+  background: white;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* 統一圓形日期格樣式（社課、活動、封廚房、截止日） */
+.tag-club abbr,
+.tag-event abbr,
+.tag-closed abbr,
+.tag-deadline abbr {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  border-radius: 50%;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* 各類型顏色 */
+.tag-club abbr {
+  background-color: #e3ecb1;
+}
+.tag-event abbr {
+  background-color: #cfe9f2;
+}
+.tag-closed abbr {
+  background-color: #f3d2d2;
+}
+.tag-deadline abbr {
+  background-color: #eee;
+  border: 1px solid #ccc;
+}
+
+/* 傳說（legend）區塊 */
+.calendar-legend {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.calendar-legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.calendar-legend .dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+}
+.dot.club { background: #e3ecb1; }
+.dot.event { background: #cfe9f2; }
+.dot.closed { background: #f3d2d2; }
+.dot.deadline { background: #eee; border: 1px solid #999; }
