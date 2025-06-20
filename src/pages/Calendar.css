@@ -1,4 +1,9 @@
 /* 外層樣式 */
+.react-calendar__month-view__weekdays abbr {
+  text-decoration: none; /* 移除底線 */
+  cursor: default;
+}
+
 .calendar-wrapper {
   padding: 24px;
   background: #f3e6d5; /* 奶茶色底 */
@@ -17,11 +22,17 @@
   font-family: 'Segoe UI', sans-serif;
 }
 
-/* ✅ 日曆 tile 格式修正（確保顯示一致） */
+/* ✅ 日曆 tile 格式修正（固定高度＋垂直置中） */
 .react-calendar__tile {
-  padding: 6px 0;
+  height: 48px; /* 統一格子高度 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0; /* 移除預設 padding 避免壓縮空間 */
+  box-sizing: border-box;
   text-align: center;
 }
+
 
 /* ✅ 統一圓形樣式：讓各 tile 不壓縮，適應手機寬度 */
 .tile-club abbr,
@@ -76,7 +87,7 @@
   border-radius: 4px;
 }
 
-.dot.club { background: #e3ecb1; }
-.dot.event { background: #cfe9f2; }
-.dot.closed { background: #f3d2d2; }
+.dot.club { background: #e3ecb1; border: 1px solid #999; }
+.dot.event { background: #cfe9f2; border: 1px solid #999; }
+.dot.closed { background: #f3d2d2; border: 1px solid #999; }
 .dot.deadline { background: #eee; border: 1px solid #999; }
