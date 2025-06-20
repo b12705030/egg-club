@@ -17,37 +17,38 @@
   font-family: 'Segoe UI', sans-serif;
 }
 
-/* 統一圓形日期格樣式（社課、活動、封廚房、截止日） */
-.tag-club abbr,
-.tag-event abbr,
-.tag-closed abbr,
-.tag-deadline abbr {
-  display: inline-block;
-  width: 36px;
-  height: 36px;
-  line-height: 36px;
-  text-align: center;
+/* ✅ 統一圓形樣式：讓各 tile 不壓縮，適應手機寬度 */
+.tile-club abbr,
+.tile-event abbr,
+.tile-closed abbr,
+.tile-deadline abbr {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   font-weight: 500;
   font-size: 14px;
+  line-height: 1;
 }
 
-/* 各類型顏色 */
-.tag-club abbr {
+/* ✅ 各類型顏色 */
+.tile-club abbr {
   background-color: #e3ecb1;
 }
-.tag-event abbr {
+.tile-event abbr {
   background-color: #cfe9f2;
 }
-.tag-closed abbr {
+.tile-closed abbr {
   background-color: #f3d2d2;
 }
-.tag-deadline abbr {
+.tile-deadline abbr {
   background-color: #eee;
   border: 1px solid #ccc;
 }
 
-/* 傳說（legend）區塊 */
+/* ✅ 傳說（legend）區塊 */
 .calendar-legend {
   display: flex;
   justify-content: center;
@@ -68,7 +69,14 @@
   height: 14px;
   border-radius: 4px;
 }
+
 .dot.club { background: #e3ecb1; }
 .dot.event { background: #cfe9f2; }
 .dot.closed { background: #f3d2d2; }
 .dot.deadline { background: #eee; border: 1px solid #999; }
+
+/* ✅ 讓日曆 tile 不壓縮文字、居中對齊 */
+.react-calendar__tile {
+  padding: 6px 0;
+  text-align: center;
+}
