@@ -14,10 +14,18 @@ function AdminPanel() {
   const [title, setTitle] = useState('')
   const [type, setType] = useState('活動')
   const [date, setDate] = useState(null)
-  const [content, setContent] = useState('') // ✅ 新增內容狀態
+  const [content, setContent] = useState('')
 
   if (!profile || profile.identity !== '家長') {
     return <p style={{ padding: '24px' }}>🚫 無權限進入此頁面</p>
+  }
+
+  // ✅ 避免 toISOString() 造成時差的手動格式化
+  const formatDate = (date) => {
+    const yyyy = date.getFullYear()
+    const mm = String(date.getMonth() + 1).padStart(2, '0')
+    const dd = String(date.getDate()).padStart(2, '0')
+    return `${yyyy}-${mm}-${dd}`
   }
 
   const handleSubmit = async (e) => {
@@ -25,8 +33,8 @@ function AdminPanel() {
     const { error } = await supabase.from('announcements').insert([{
       title,
       type,
-      date: date?.toISOString().slice(0, 10),
-      content // ✅ 傳送內容
+      date: formatDate(date),  // ✅ 使用格式化後的字串
+      content
     }])
     if (error) {
       alert('新增失敗：' + error.message)
@@ -35,7 +43,7 @@ function AdminPanel() {
       setTitle('')
       setType('活動')
       setDate(null)
-      setContent('') // ✅ 清空內容
+      setContent('')
       navigate('/')
     }
   }
@@ -73,7 +81,6 @@ function AdminPanel() {
           />
         </label>
 
-        {/* ✅ 新增內容欄位 */}
         <label>
           活動內容：
           <textarea
