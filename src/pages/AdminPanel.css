@@ -27,7 +27,7 @@
 
 .admin-form input,
 .admin-form select,
-.admin-form textarea {  /* ✅ 包含 textarea */
+.admin-form textarea {  /* ✅ 加入 textarea */
   margin-top: 8px;
   padding: 10px;
   border: 1px solid #ccc;
@@ -35,9 +35,7 @@
   font-size: 14px;
   background-color: #fff;
   font-family: inherit;
-  resize: vertical;       /* ✅ 垂直可調整高度 */
-  min-height: 100px;      /* ✅ 提供適當初始高度 */
-  line-height: 1.5;
+  resize: vertical; /* ✅ 允許垂直調整高度 */
 }
 
 .admin-form button {
