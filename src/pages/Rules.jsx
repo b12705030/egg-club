@@ -47,21 +47,6 @@ function Rule() {
       ) : (
         <p>查無個人資料，請聯絡管理員。</p>
       )}
-
-      {/* 登出按鈕 */}
-      <div style={{ marginTop: '32px', textAlign: 'center' }}>
-        <button onClick={handleLogout} style={{
-          backgroundColor: '#ffdddd',
-          color: '#444',
-          padding: '10px 24px',
-          borderRadius: '8px',
-          border: 'none',
-          fontSize: '1rem',
-          cursor: 'pointer'
-        }}>
-          登出
-        </button>
-      </div>
     </div>
   )
 }

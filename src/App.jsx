@@ -11,6 +11,8 @@ import TestZone from './pages/TestZone'
 import Blog from './pages/Blog'
 import Rules from './pages/Rules'
 import AdminPanel from './pages/AdminPanel'
+import AddEventPage from './pages/AddEventForm'
+import AnnouncementDetail from './pages/AnnouncementDetail'
 
 function App() {
   const [session, setSession] = useState(null)
@@ -83,6 +85,8 @@ function App() {
             <Route path="blog" element={<Blog />} />
             <Route path="rules" element={<Rules />} />
             <Route path="admin" element={<AdminPanel />} />
+            <Route path="/add-event" element={<AddEventPage />} />
+            <Route path="/announcement/:id" element={<AnnouncementDetail />} />
           </Route>
         </Routes>
       </BrowserRouter>

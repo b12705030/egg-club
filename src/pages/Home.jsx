@@ -1,11 +1,12 @@
-// src/pages/Home.jsx
 import { useEffect, useState } from 'react'
 import { supabase } from '../supabase'
 import './Home.css'
 import Header from '../components/Header'
+import { useNavigate } from 'react-router-dom' // ✅ 加這行
 
 function Home() {
   const [announcements, setAnnouncements] = useState([])
+  const navigate = useNavigate() // ✅ 初始化 navigate
 
   useEffect(() => {
     const fetchAnnouncements = async () => {
@@ -21,7 +22,6 @@ function Home() {
     fetchAnnouncements()
   }, [])
 
-  // ✅ 新增：根據 type 決定樣式
   const getTagClass = (type) => {
     switch (type) {
       case '封廚房':
@@ -47,7 +47,12 @@ function Home() {
         ) : (
           <div className="announcement-list">
             {announcements.map((item) => (
-              <div key={item.id} className="announcement-card">
+              <div
+                key={item.id}
+                className="announcement-card"
+                onClick={() => navigate(`/announcement/${item.id}`)} // ✅ 點擊跳轉
+                style={{ cursor: 'pointer' }} // ✅ 滑鼠樣式
+              >
                 <div className="announcement-text">
                   <strong>{item.title}</strong>
                   <div className="announcement-meta">
