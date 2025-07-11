@@ -32,10 +32,10 @@
 /* 🟡 點點區塊：三個 period 點的容器 */
 .kitchen-dot-container {
   display: flex;
-  gap: 4px;
+  gap: 3px;
   justify-content: center;
   position: absolute;
-  bottom: 6px;
+  bottom: 3px;
   left: 0;
   right: 0;
 }
