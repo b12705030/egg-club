@@ -17,13 +17,13 @@
 
 /* 📅 每格 tile 的預設樣式 */
 .react-calendar__tile.kitchen-tile {
-  height: 40px !important;
+  height: 44px !important;
   padding: 0 !important;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: 12px;
   border: 0.8px solid #d0d0d0; /* 統一格線 */
   border-radius: 0 !important; /* 去除圓角 */
   box-sizing: border-box;
