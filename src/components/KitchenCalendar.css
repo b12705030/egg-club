@@ -43,14 +43,14 @@
 /* 每個點點的外層，負責堆疊灰底與彩色 */
 .kitchen-dot-wrapper {
   position: relative;
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
 
 /* 每顆點的基本樣式 */
 .kitchen-dot {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   position: absolute;
   top: 0;
