@@ -12,7 +12,7 @@
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 20px;
-  padding-top: 20px;
+  padding-top: 16px;
 }
 
 /* 📅 每格 tile 的預設樣式 */
@@ -24,7 +24,7 @@
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  border: 1px solid #d0d0d0; /* 統一格線 */
+  border: 0.8px solid #d0d0d0; /* 統一格線 */
   border-radius: 0 !important; /* 去除圓角 */
   box-sizing: border-box;
 }
@@ -87,6 +87,6 @@
 
 /* 📅 日期格子區外框（你要的那圈邊框） */
 .kitchen-calendar .react-calendar__month-view__days {
-  border: 1px solid #d0d0d0;
+  border: 0.8px solid #d0d0d0;
   box-sizing: border-box;
 }
