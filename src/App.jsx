@@ -13,6 +13,7 @@ import Rules from './pages/Rules'
 import AdminPanel from './pages/AdminPanel'
 import AddEventPage from './pages/AddEventForm'
 import AnnouncementDetail from './pages/AnnouncementDetail'
+import KitchenCalendar from './components/KitchenCalendar'
 
 function App() {
   const [session, setSession] = useState(null)

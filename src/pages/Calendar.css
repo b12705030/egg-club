@@ -221,3 +221,11 @@
   order: 3;
 }
 
+/* --------------------------------------------------- */
+
+/* ✅ 移除點擊日期時的藍色背景（選中樣式） */
+.react-calendar__tile--active {
+  background: transparent !important;
+  color: inherit !important;
+  box-shadow: none !important;
+}

@@ -1,20 +1,19 @@
-import { useProfile } from '../ProfileContext'
+import React from 'react';
+import { useProfile } from '../ProfileContext';
+import KitchenCalendar from '../components/KitchenCalendar';
 
 function TestZone() {
-  const { profile, loading } = useProfile()
+  const { profile, loading } = useProfile();
 
-  if (loading) return <p>載入中...</p>
+  if (loading) return <p>載入中...</p>;
 
-  return (
-    <div>
-      <h2>🧪 試做專區</h2>
-      {profile ? (
-        <p>{profile.name}，歡迎來到試做專區！</p>
-      ) : (
-        <p>查無個人資料，請聯絡管理員。</p>
-      )}
+  return profile ? (
+    <div className="testzone-content">
+      <KitchenCalendar />
     </div>
-  )
+  ) : (
+    <p>查無個人資料，請聯絡管理員。</p>
+  );
 }
 
-export default TestZone
+export default TestZone;
