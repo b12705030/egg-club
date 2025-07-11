@@ -17,7 +17,7 @@
 
 /* 📅 每格 tile 的預設樣式 */
 .react-calendar__tile.kitchen-tile {
-  height: 52px !important;
+  height: 40px !important;
   padding: 0 !important;
   position: relative;
   display: flex;
