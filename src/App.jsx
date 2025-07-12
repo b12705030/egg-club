@@ -15,6 +15,7 @@ import AddEventPage from './pages/AddEventForm'
 import AnnouncementDetail from './pages/AnnouncementDetail'
 import KitchenCalendar from './components/KitchenCalendar'
 import TrialRequestForm from './components/TrialRequestForm';
+import ReviewPanel from './pages/ReviewPanel'
 
 function App() {
   const [session, setSession] = useState(null)
@@ -90,6 +91,7 @@ function App() {
             <Route path="/add-event" element={<AddEventPage />} />
             <Route path="/announcement/:id" element={<AnnouncementDetail />} />
             <Route path="/trial-request" element={<TrialRequestForm />} />
+            <Route path="review" element={<ReviewPanel />} />
           </Route>
         </Routes>
       </BrowserRouter>

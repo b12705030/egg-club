@@ -1,0 +1,54 @@
+/* 頁面區塊整體內縮 */
+.review-section {
+  padding: 0 24px;
+  padding-top: 8px;
+}
+
+/* 標題 */
+.review-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+/* 單筆申請卡片 */
+.review-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* 各欄位的間距 */
+.review-info p {
+  margin: 4px 0;
+}
+
+/* 按鈕列 */
+.review-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+/* 按鈕樣式 */
+.review-buttons button {
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.review-buttons button.approve {
+  background: #4a3b18;
+  color: white;
+}
+
+.review-buttons button.reject {
+  background: #ccc;
+  color: #333;
+}

@@ -1,4 +1,3 @@
-// src/pages/Rule.jsx
 import { useProfile } from '../ProfileContext'
 import { supabase } from '../supabase'
 import { useNavigate } from 'react-router-dom'
@@ -26,20 +25,20 @@ function Rule() {
           <p><strong>家別：</strong>{profile.family}</p>
           <p><strong>屆別：</strong>{profile.year}</p>
 
-          {/* ✅ 幹部專區按鈕（只有家長可見） */}
+          {/* ✅ 家長與網管共用：幹部專區 */}
           {['家長', '網管'].includes(profile.identity) && (
             <div style={{ marginTop: '24px', textAlign: 'center' }}>
-              <button onClick={() => navigate('/admin')} style={{
-                backgroundColor: '#e6f2d9',
-                color: '#2f4f2f',
-                padding: '10px 24px',
-                borderRadius: '8px',
-                border: 'none',
-                fontSize: '1rem',
-                fontWeight: 'bold',
-                cursor: 'pointer'
-              }}>
+              <button onClick={() => navigate('/admin')} style={btnStyle}>
                 ➕ 幹部專區
+              </button>
+            </div>
+          )}
+
+          {/* ✅ 僅網管專屬：審核時段 */}
+          {profile.identity === '網管' && (
+            <div style={{ marginTop: '16px', textAlign: 'center' }}>
+              <button onClick={() => navigate('/review')} style={btnStyle}>
+                ✅ 審核時段
               </button>
             </div>
           )}
@@ -49,6 +48,17 @@ function Rule() {
       )}
     </div>
   )
+}
+
+const btnStyle = {
+  backgroundColor: '#e6f2d9',
+  color: '#2f4f2f',
+  padding: '10px 24px',
+  borderRadius: '8px',
+  border: 'none',
+  fontSize: '1rem',
+  fontWeight: 'bold',
+  cursor: 'pointer'
 }
 
 export default Rule
