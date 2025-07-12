@@ -10,7 +10,7 @@
 
 .kitchen-reservation-card {
   background: #fff;
-  border-radius: 16px;
+  border-radius: 12px;
   padding: 20px 24px;
   margin-bottom: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -22,7 +22,7 @@
 .kitchen-reservation-info {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .info-row {
@@ -38,8 +38,8 @@
 }
 
 .status-label {
-  padding: 12px 24px;
-  border-radius: 16px;
+  padding: 12px 12px;
+  border-radius: 12px;
   font-weight: 700;
   color: #4a3b18;
   white-space: nowrap;
