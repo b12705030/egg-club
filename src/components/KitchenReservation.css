@@ -30,7 +30,7 @@
   font-weight: 700;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .icon {
@@ -38,7 +38,7 @@
 }
 
 .status-label {
-  padding: 12px 12px;
+  padding: 12px 16px;
   border-radius: 12px;
   font-weight: 700;
   color: #4a3b18;
