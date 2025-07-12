@@ -16,8 +16,12 @@ function AdminPanel() {
   const [date, setDate] = useState(null)
   const [content, setContent] = useState('')
 
-  if (!profile || profile.identity !== '家長') {
-    return <p style={{ padding: '24px' }}>🚫 無權限進入此頁面</p>
+  // 允許進入的身份清單
+  const allowedRoles = ['家長', '網管'];
+
+  if (!profile || !allowedRoles.includes(profile.identity)) {
+    // 🚫 若使用者不存在，或其身分不在允許清單，直接顯示無權限訊息
+    return <p style={{ padding: '24px' }}>🚫 無權限進入此頁面</p>;
   }
 
   // ✅ 避免 toISOString() 造成時差的手動格式化

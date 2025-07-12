@@ -1,0 +1,52 @@
+.trial-form-wrapper {
+  padding: 0 16px;        /* ✅ 左右 padding */
+  max-width: 640px;       /* ✅ 限制最大寬度 */
+  margin: 0 auto;         /* ✅ 水平置中 */
+}
+
+.trial-form {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.trial-form h3 {
+  margin-top: 0;     /* 移除上方空白 */
+  margin-bottom: 0px; /* 下方保留一點距離即可 */
+}
+.trial-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  gap: 6px;
+}
+.trial-form input,
+.trial-form select,
+.trial-form textarea {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+.rule-box {
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 12px 16px;
+}
+.rule-box summary { cursor: pointer; font-weight: 700; }
+.rule-text { white-space: pre-wrap; font-size: 13px; }
+.form-error { color: red; font-weight: 700; }
+.submit-btn {
+  align-self: flex-end;
+  background: #4a3b18;
+  color: #fff;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.cancel-tip { font-size: 12px; color: #666; }

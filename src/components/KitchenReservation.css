@@ -46,3 +46,37 @@
   color: #4a3b18;
   white-space: nowrap;
 }
+
+
+/* 表單 */
+.submit-btn {
+  align-self: flex-end;
+  background: #4a3b18;
+  color: #fff;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+
+/*按鈕*/
+.kitchen-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0px;
+}
+
+.apply-trial-btn {
+  background: #4a3b18;
+  color: white;
+  font-weight: 700;
+  padding: 8px 56px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 16px; /*把按鈕往下壓*/
+}

@@ -129,7 +129,7 @@ function CalendarPage() {
         <span><span className="dot deadline"></span>截止日</span>
       </div>
 
-      {profile?.identity === '家長' && (
+      {['家長', '網管'].includes(profile?.identity) && (
         <div style={{ marginTop: '24px', textAlign: 'center' }}>
           <button
             onClick={() => navigate('/add-event')}

@@ -8,7 +8,7 @@ export function ProfileProvider({ children }) {
   const [session, setSession] = useState(null)
   const [profile, setProfile] = useState(null)
   const [loading, setLoading] = useState(true)
-  const isAdmin = profile?.identity === '家長'
+  const isAdmin = ['家長', '網管'].includes(profile?.identity)
 
   // 初始化 session
   useEffect(() => {

@@ -27,7 +27,7 @@ function Rule() {
           <p><strong>屆別：</strong>{profile.year}</p>
 
           {/* ✅ 幹部專區按鈕（只有家長可見） */}
-          {profile.identity === '家長' && (
+          {['家長', '網管'].includes(profile.identity) && (
             <div style={{ marginTop: '24px', textAlign: 'center' }}>
               <button onClick={() => navigate('/admin')} style={{
                 backgroundColor: '#e6f2d9',
