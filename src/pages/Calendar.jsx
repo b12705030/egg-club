@@ -132,7 +132,7 @@ function CalendarPage() {
       {['家長', '網管'].includes(profile?.identity) && (
         <div style={{ marginTop: '24px', textAlign: 'center' }}>
           <button onClick={() => navigate('/add-event')}>
-            ➕ 新增活動
+            + 新增活動
           </button>
         </div>
       )}

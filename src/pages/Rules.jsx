@@ -2,6 +2,9 @@ import { useProfile } from '../ProfileContext'
 import { supabase } from '../supabase'
 import { useNavigate } from 'react-router-dom'
 
+import { FaRegCalendarCheck } from "react-icons/fa";
+import { FaUserLock } from "react-icons/fa";
+
 function Rule() {
   const { profile, loading } = useProfile()
   const navigate = useNavigate()
@@ -29,21 +32,20 @@ function Rule() {
           {['家長', '網管'].includes(profile.identity) && (
             <div style={{ marginTop: '24px', textAlign: 'center' }}>
               <button onClick={() => navigate('/admin')}>
-                ➕ 幹部專區
+                + 幹部專區
               </button>
             </div>
           )}
 
           {/* ✅ 僅網管專屬：審核時段 */}
           {profile.identity === '網管' && (
-            <div style={{ marginTop: '16px', textAlign: 'center' }}>
-              <button onClick={() => navigate('/review')}>
-                ✅ 審核時段
-              </button>
-              <div style={{ height: '8px' }} /> {/* 空一行 */}
-              <button onClick={() => navigate('/account-tools')}>
-                🛠️ 帳號工具
-              </button>
+            <div style={{ marginTop: '16px', display: 'flex', justifyContent: 'center', gap: '8px' }}>
+                <button onClick={() => navigate('/review')}>
+                    <FaRegCalendarCheck /> 審核時段
+                </button>
+                <button onClick={() => navigate('/account-tools')}>
+                    <FaUserLock /> 管理註冊帳號
+                </button>
             </div>
           )}
         </div>
