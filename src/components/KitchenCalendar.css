@@ -95,7 +95,7 @@
 
 .kitchen-legend {
   margin-top: 16px;
-  font-size: 14px;
+  font-size: 12px;
   text-align: center;
   color: #333;
 }
@@ -104,7 +104,7 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 10px;
   margin-bottom: 8px;
 }
 
@@ -119,8 +119,8 @@
 }
 
 .legend-dot {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
 }
 
@@ -129,6 +129,6 @@
 }
 
 .legend-note {
-  font-size: 13px;
+  font-size: 12px;
   color: #555;
 }
