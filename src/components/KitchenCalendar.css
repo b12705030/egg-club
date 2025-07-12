@@ -90,3 +90,45 @@
   border: 0.8px solid #d0d0d0;
   box-sizing: border-box;
 }
+
+/* ==== 說明區 ==== */
+
+.kitchen-legend {
+  margin-top: 16px;
+  font-size: 14px;
+  text-align: center;
+  color: #333;
+}
+
+.legend-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 4px 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.legend-label {
+  font-weight: bold;
+}
+
+.legend-note {
+  font-size: 13px;
+  color: #555;
+}

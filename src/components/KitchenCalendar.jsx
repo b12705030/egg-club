@@ -23,6 +23,14 @@ function groupByDateAndPeriod(rows) {
   return grouped;
 }
 
+const LegendItem = ({ color, label }) => (
+  <div className="legend-item">
+    <span className="legend-dot" style={{ backgroundColor: color }}></span>
+    <span className="legend-label">{label}</span>
+  </div>
+);
+
+
 const KitchenCalendar = () => {
   const [scheduleData, setScheduleData] = useState({});
 
@@ -82,6 +90,17 @@ const KitchenCalendar = () => {
           date.toLocaleDateString(locale, { weekday: 'short' }).toUpperCase()
         } // 將週日～週六改為 SUN~SAT
       />
+
+      {/* 👇 說明區塊 */}
+      <div className="kitchen-legend">
+        <div className="legend-row">
+            <LegendItem color="#f3c0c0" label="封廚房" />
+            <LegendItem color="#aed9a3" label="社課" />
+            <LegendItem color="#f7cb91" label="已被借" />
+            <LegendItem color="#a0d8ef" label="活動" />
+        </div>
+        <p className="legend-note">僅灰色時段可借用廚房，其餘時段皆已滿或不開放廚房！</p>
+      </div>
     </div>
   );
 };
