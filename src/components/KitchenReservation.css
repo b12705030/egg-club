@@ -3,7 +3,7 @@
 }
 
 .kitchen-section-title {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 900;
   margin: 32px 0 16px;
 }
@@ -26,7 +26,7 @@
 }
 
 .info-row {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -34,7 +34,7 @@
 }
 
 .icon {
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .status-label {
