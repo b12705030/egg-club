@@ -32,7 +32,7 @@
   display: flex;
   align-items: center;
   gap: 10px;    /*icon 與文字間距*/
-  line-height: 1.0;  /* 預設是 1.2 左右 */
+  line-height: 1.1;  /* 預設是 1.2 左右 */
 }
 
 .icon {
