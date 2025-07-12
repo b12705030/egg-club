@@ -3,6 +3,9 @@ import { supabase } from '../supabase';
 import { useProfile } from '../ProfileContext';
 import './KitchenReservation.css';  // ↩︎ 下面有 CSS
 
+import { LuCalendarCheck } from "react-icons/lu";
+import { TbCalendarTime } from "react-icons/tb";
+
 // 顏色對照 (可依狀態再加)
 const statusColor = {
   已核准: '#ffe08a',
@@ -52,11 +55,11 @@ export default function MyReservationList() {
         <div key={`${r.date}-${r.period}`} className="kitchen-reservation-card">
           <div className="kitchen-reservation-info">
             <div className="info-row">
-              <span className="icon">📅</span>
+              <span className="icon"><LuCalendarCheck /></span>
               <span>日期：{r.date}</span>
             </div>
             <div className="info-row">
-              <span className="icon">⏰</span>
+              <span className="icon"><TbCalendarTime /></span>
               <span>時段：{periodToTime[r.period] ?? r.period}</span>
             </div>
           </div>

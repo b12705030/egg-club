@@ -8,11 +8,12 @@
   margin: 32px 0 16px;
 }
 
+/* 每一張「預約卡片」的外框 */
 .kitchen-reservation-card {
   background: #fff;
   border-radius: 12px;
   padding: 12px 16px;
-  margin-bottom: 12px;
+  margin-bottom: 12px;  /*卡片間距*/
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   display: flex;
   justify-content: space-between;
@@ -22,7 +23,7 @@
 .kitchen-reservation-info {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
 .info-row {
@@ -30,7 +31,7 @@
   font-weight: 700;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;    /*icon 與文字間距*/
 }
 
 .icon {
