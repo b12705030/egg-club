@@ -131,19 +131,7 @@ function CalendarPage() {
 
       {['家長', '網管'].includes(profile?.identity) && (
         <div style={{ marginTop: '24px', textAlign: 'center' }}>
-          <button
-            onClick={() => navigate('/add-event')}
-            style={{
-              backgroundColor: '#e6f2d9',
-              color: '#2f4f2f',
-              padding: '10px 24px',
-              borderRadius: '8px',
-              border: 'none',
-              fontSize: '1rem',
-              fontWeight: 'bold',
-              cursor: 'pointer'
-            }}
-          >
+          <button onClick={() => navigate('/add-event')}>
             ➕ 新增活動
           </button>
         </div>

@@ -16,6 +16,7 @@ import AnnouncementDetail from './pages/AnnouncementDetail'
 import KitchenCalendar from './components/KitchenCalendar'
 import TrialRequestForm from './components/TrialRequestForm';
 import ReviewPanel from './pages/ReviewPanel'
+import AccountTools from './pages/AccountTools'
 
 function App() {
   const [session, setSession] = useState(null)
@@ -92,6 +93,7 @@ function App() {
             <Route path="/announcement/:id" element={<AnnouncementDetail />} />
             <Route path="/trial-request" element={<TrialRequestForm />} />
             <Route path="review" element={<ReviewPanel />} />
+            <Route path="/account-tools" element={<AccountTools />} />
           </Route>
         </Routes>
       </BrowserRouter>

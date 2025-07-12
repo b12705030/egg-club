@@ -28,7 +28,7 @@ function Rule() {
           {/* ✅ 家長與網管共用：幹部專區 */}
           {['家長', '網管'].includes(profile.identity) && (
             <div style={{ marginTop: '24px', textAlign: 'center' }}>
-              <button onClick={() => navigate('/admin')} style={btnStyle}>
+              <button onClick={() => navigate('/admin')}>
                 ➕ 幹部專區
               </button>
             </div>
@@ -37,8 +37,12 @@ function Rule() {
           {/* ✅ 僅網管專屬：審核時段 */}
           {profile.identity === '網管' && (
             <div style={{ marginTop: '16px', textAlign: 'center' }}>
-              <button onClick={() => navigate('/review')} style={btnStyle}>
+              <button onClick={() => navigate('/review')}>
                 ✅ 審核時段
+              </button>
+              <div style={{ height: '8px' }} /> {/* 空一行 */}
+              <button onClick={() => navigate('/account-tools')}>
+                🛠️ 帳號工具
               </button>
             </div>
           )}
@@ -48,17 +52,6 @@ function Rule() {
       )}
     </div>
   )
-}
-
-const btnStyle = {
-  backgroundColor: '#e6f2d9',
-  color: '#2f4f2f',
-  padding: '10px 24px',
-  borderRadius: '8px',
-  border: 'none',
-  fontSize: '1rem',
-  fontWeight: 'bold',
-  cursor: 'pointer'
 }
 
 export default Rule
