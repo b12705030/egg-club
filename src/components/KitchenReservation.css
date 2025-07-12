@@ -1,0 +1,46 @@
+.testzone-content {
+  padding: 0 24px;
+}
+
+.kitchen-section-title {
+  font-size: 24px;
+  font-weight: 900;
+  margin: 32px 0 16px;
+}
+
+.kitchen-reservation-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.kitchen-reservation-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info-row {
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon {
+  font-size: 20px;
+}
+
+.status-label {
+  padding: 12px 24px;
+  border-radius: 16px;
+  font-weight: 700;
+  color: #4a3b18;
+  white-space: nowrap;
+}

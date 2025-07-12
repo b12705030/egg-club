@@ -2,7 +2,7 @@
 .kitchen-calendar-wrapper {
   padding: 24px;
   background: #f3e6d5; /* 奶茶色底 */
-  min-height: 100vh;
+  min-height: 10vh;
 }
 
 /* 📅 react-calendar 基礎樣式 (限定套用在 kitchen calendar) */
