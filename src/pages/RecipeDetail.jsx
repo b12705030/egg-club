@@ -2,7 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { supabase } from '../supabase'
 import { useProfile } from '../ProfileContext'
-import { FiHeart, FiHeart as EmptyHeart } from 'react-icons/fi'
+import { FiHeart as EmptyHeart } from 'react-icons/fi'
 import { FaHeart as FilledHeart } from 'react-icons/fa'
 
 import './Blog.css'
@@ -17,6 +17,7 @@ function RecipeDetail() {
   const [ingredientsMap, setIngredientsMap] = useState({})
   const [stepGroups, setStepGroups] = useState({})
   const [liked, setLiked] = useState(false)
+  const [likeCount, setLikeCount] = useState(0)
 
   useEffect(() => {
     async function fetchData() {
@@ -72,6 +73,12 @@ function RecipeDetail() {
       }
       setStepGroups(grouped)
 
+      const { count } = await supabase
+        .from('liked_recipes')
+        .select('*', { count: 'exact', head: true })
+        .eq('recipe_id', id)
+      setLikeCount(count || 0)
+
       if (profile) {
         const { data: likedData } = await supabase
           .from('liked_recipes')
@@ -90,15 +97,14 @@ function RecipeDetail() {
     if (!profile) return
 
     if (liked) {
-      // 取消喜歡
       await supabase
         .from('liked_recipes')
         .delete()
         .eq('user_id', profile.id)
         .eq('recipe_id', id)
       setLiked(false)
+      setLikeCount((prev) => Math.max(prev - 1, 0))
     } else {
-      // 加入喜歡
       await supabase
         .from('liked_recipes')
         .insert({
@@ -106,6 +112,7 @@ function RecipeDetail() {
           recipe_id: id,
         })
       setLiked(true)
+      setLikeCount((prev) => prev + 1)
     }
   }
 
@@ -143,8 +150,40 @@ function RecipeDetail() {
           cursor: 'pointer'
         }}>← 返回食譜列表</button>
 
-        <h2 style={{ marginBottom: '4px' }}>{recipe.title}</h2>
-        <p style={{ color: '#777', marginBottom: '16px' }}>{recipe.authors}</p>
+        {/* 🧡 標題與 Like 橫向排版 */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: '16px'
+        }}>
+          <div>
+            <h2 style={{ margin: 0 }}>{recipe.title}</h2>
+            <p style={{ color: '#777', marginTop: '4px' }}>{recipe.authors}</p>
+          </div>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            color: '#a8875d',
+            fontWeight: 'bold',
+            fontSize: '1.1rem'
+          }}>
+            <div style={{
+              backgroundColor: '#fce090',
+              borderRadius: '50%',
+              width: '32px',
+              height: '32px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginRight: '8px'
+            }}>
+              <FilledHeart color="white" size={16} />
+            </div>
+            {likeCount} Likes
+          </div>
+        </div>
+
 
         <h3 style={{ marginTop: '12px' }}>🍴 材料</h3>
         <div style={{
