@@ -150,40 +150,31 @@ function RecipeDetail() {
           cursor: 'pointer'
         }}>← 返回食譜列表</button>
 
-        {/* 🧡 標題與 Like 橫向排版 */}
+        <h3 style={{ marginBottom: '4px' }}>{recipe.title}</h3>
+        <p style={{ color: '#777', marginBottom: '16px' }}>{recipe.authors}</p>
+
+        {/* ❤️ 總 Like 數顯示區塊 */}
         <div style={{
           display: 'flex',
-          justifyContent: 'space-between',
           alignItems: 'center',
-          marginBottom: '16px'
+          marginBottom: '16px',
+          gap: '8px',
+          color: '#a8875d',
+          fontWeight: 'bold',
+          fontSize: '1.1rem'
         }}>
-          <div>
-            <h3 style={{ margin: 0 }}>{recipe.title}</h3>
-            <p style={{ color: '#777', marginTop: '4px' }}>{recipe.authors}</p>
-          </div>
           <div style={{
+            backgroundColor: '#fce090',
+            borderRadius: '50%',
+            padding: '8px',
             display: 'flex',
             alignItems: 'center',
-            color: '#a8875d',
-            fontWeight: 'bold',
-            fontSize: '1.1rem'
+            justifyContent: 'center'
           }}>
-            <div style={{
-              backgroundColor: '#fce090',
-              borderRadius: '50%',
-              width: '32px',
-              height: '32px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginRight: '8px'
-            }}>
-              <FilledHeart color="white" size={16} />
-            </div>
-            {likeCount} Likes
+            <FilledHeart color="white" size={16} />
           </div>
+          {likeCount} Likes
         </div>
-
 
         <h3 style={{ marginTop: '12px' }}>🍴 材料</h3>
         <div style={{
