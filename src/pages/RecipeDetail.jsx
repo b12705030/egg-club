@@ -158,7 +158,7 @@ function RecipeDetail() {
           marginBottom: '16px'
         }}>
           <div>
-            <h2 style={{ margin: 0 }}>{recipe.title}</h2>
+            <h3 style={{ margin: 0 }}>{recipe.title}</h3>
             <p style={{ color: '#777', marginTop: '4px' }}>{recipe.authors}</p>
           </div>
           <div style={{
