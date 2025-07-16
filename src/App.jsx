@@ -17,6 +17,7 @@ import KitchenCalendar from './components/KitchenCalendar'
 import TrialRequestForm from './components/TrialRequestForm';
 import ReviewPanel from './pages/ReviewPanel'
 import AccountTools from './pages/AccountTools'
+import RecipeDetail from './pages/RecipeDetail'
 
 function App() {
   const [session, setSession] = useState(null)
@@ -76,28 +77,27 @@ function App() {
   }
 
   return (
-    <ProfileProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={<TabLayout session={session} onLogout={handleLogout} />}
-          >
-            <Route index element={<Home />} />
-            <Route path="calendar" element={<Calendar />} />
-            <Route path="test" element={<TestZone />} />
-            <Route path="blog" element={<Blog />} />
-            <Route path="rules" element={<Rules />} />
-            <Route path="admin" element={<AdminPanel />} />
-            <Route path="/add-event" element={<AddEventPage />} />
-            <Route path="/announcement/:id" element={<AnnouncementDetail />} />
-            <Route path="/trial-request" element={<TrialRequestForm />} />
-            <Route path="review" element={<ReviewPanel />} />
-            <Route path="/account-tools" element={<AccountTools />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </ProfileProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={<TabLayout session={session} onLogout={handleLogout} />}
+        >
+          <Route index element={<Home />} />
+          <Route path="calendar" element={<Calendar />} />
+          <Route path="test" element={<TestZone />} />
+          <Route path="blog" element={<Blog />} />
+          <Route path="rules" element={<Rules />} />
+          <Route path="admin" element={<AdminPanel />} />
+          <Route path="/add-event" element={<AddEventPage />} />
+          <Route path="/announcement/:id" element={<AnnouncementDetail />} />
+          <Route path="/trial-request" element={<TrialRequestForm />} />
+          <Route path="review" element={<ReviewPanel />} />
+          <Route path="/account-tools" element={<AccountTools />} />
+          <Route path="recipe/:id" element={<RecipeDetail />} /> 
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 

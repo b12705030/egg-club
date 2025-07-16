@@ -1,0 +1,78 @@
+.recipe-wrapper {
+  padding: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.back-button {
+  margin-bottom: 16px;
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.recipe-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.recipe-image {
+  width: 100%;
+  max-width: 480px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  margin-top: 32px;
+  font-size: 1.25rem;
+  border-left: 6px solid #d7b97f;
+  padding-left: 12px;
+  color: #333;
+}
+
+.ingredient-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.ingredient-card {
+  background: #fffefb;
+  border: 1px solid #f0e8d8;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.ingredient-card h4 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.ingredient-card ul {
+  padding-left: 18px;
+  list-style-type: disc;
+}
+
+.step-block {
+  margin-top: 28px;
+}
+
+.step-block h4 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+}
+
+.step-block ol {
+  padding-left: 20px;
+}
+
+.step-block ol li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
