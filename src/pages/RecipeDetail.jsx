@@ -168,7 +168,7 @@ function RecipeDetail() {
             color: '#a8875d',
             fontWeight: 'bold',
             fontSize: '0.9rem',
-            marginBottom: '12px'
+            marginBottom: '10px'
           }}>
             <div style={{
               backgroundColor: '#FFCD4E',
