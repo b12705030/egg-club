@@ -129,7 +129,7 @@ function AddRecipe() {
             <div key={idx} className="section-block">
               <h4>第 {idx + 1} 區塊名稱</h4>
               <input
-                placeholder="例如：蛋糕體、裝飾層"
+                placeholder="例如：蛋糕體、果醬"
                 value={s.section}
                 onChange={(e) => {
                   const updated = [...sections]
@@ -169,7 +169,7 @@ function AddRecipe() {
                 }}
               />
               <textarea
-                placeholder="內容（可用換行）"
+                placeholder="步驟內容（請直接換行，勿編號）"
                 value={s.content}
                 onChange={(e) => {
                   const updated = [...steps]
