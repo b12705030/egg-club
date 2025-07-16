@@ -1,14 +1,22 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { supabase } from '../supabase'
+import { useProfile } from '../ProfileContext'
+import { FiHeart, FiHeart as EmptyHeart } from 'react-icons/fi'
+import { FaHeart as FilledHeart } from 'react-icons/fa'
+
+import './Blog.css'
+import './RecipeDetail.css'
 
 function RecipeDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
+  const { profile } = useProfile()
   const [recipe, setRecipe] = useState(null)
   const [sections, setSections] = useState([])
   const [ingredientsMap, setIngredientsMap] = useState({})
   const [stepGroups, setStepGroups] = useState({})
+  const [liked, setLiked] = useState(false)
 
   useEffect(() => {
     async function fetchData() {
@@ -63,20 +71,58 @@ function RecipeDetail() {
         grouped[step.step_title].push(...lines)
       }
       setStepGroups(grouped)
+
+      if (profile) {
+        const { data: likedData } = await supabase
+          .from('liked_recipes')
+          .select('id')
+          .eq('user_id', profile.id)
+          .eq('recipe_id', id)
+          .single()
+        setLiked(!!likedData)
+      }
     }
 
     fetchData()
-  }, [id, navigate])
+  }, [id, navigate, profile])
+
+  const toggleLike = async () => {
+    if (!profile) return
+
+    if (liked) {
+      // 取消喜歡
+      await supabase
+        .from('liked_recipes')
+        .delete()
+        .eq('user_id', profile.id)
+        .eq('recipe_id', id)
+      setLiked(false)
+    } else {
+      // 加入喜歡
+      await supabase
+        .from('liked_recipes')
+        .insert({
+          user_id: profile.id,
+          recipe_id: id,
+        })
+      setLiked(true)
+    }
+  }
 
   if (!recipe) return <p>載入中...</p>
 
   return (
     <div style={{ background: '#f5f5f5' }}>
-      <img
-        src={recipe.cover_image_url}
-        alt={recipe.title}
-        style={{ width: '100%', maxHeight: '300px', objectFit: 'cover' }}
-      />
+      <div style={{ position: 'relative' }}>
+        <img
+          src={recipe.cover_image_url}
+          alt={recipe.title}
+          style={{ width: '100%', maxHeight: '300px', objectFit: 'cover' }}
+        />
+        <div className="heart-icon" onClick={toggleLike}>
+          {liked ? <FilledHeart color="#e74c3c" /> : <EmptyHeart />}
+        </div>
+      </div>
 
       <div style={{
         background: 'white',
