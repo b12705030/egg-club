@@ -4,6 +4,7 @@ import { supabase } from '../supabase'
 import { useProfile } from '../ProfileContext'
 import { FiHeart as EmptyHeart } from 'react-icons/fi'
 import { FaHeart as FilledHeart } from 'react-icons/fa'
+import { FaAngleLeft } from "react-icons/fa";
 
 import './Blog.css'
 import './RecipeDetail.css'
@@ -129,6 +130,9 @@ function RecipeDetail() {
         <div className="heart-icon-detail" onClick={toggleLike}>
           {liked ? <FilledHeart color="#e74c3c" /> : <EmptyHeart />}
         </div>
+        <div className="back-button" onClick={() => navigate('/blog')}>
+          <FaAngleLeft />
+        </div>
       </div>
 
       <div style={{
@@ -140,16 +144,6 @@ function RecipeDetail() {
         position: 'relative',
         zIndex: 1
       }}>
-        <button onClick={() => navigate('/blog')} style={{
-          background: '#f5f5f5',
-          padding: '8px 16px',
-          borderRadius: '12px',
-          border: 'none',
-          marginBottom: '16px',
-          fontWeight: 'bold',
-          cursor: 'pointer'
-        }}>← 返回食譜列表</button>
-
         <h3 style={{ marginBottom: '4px' }}>{recipe.title}</h3>
 
         {/* 🧡 標題與 Like 橫向排版 */}
