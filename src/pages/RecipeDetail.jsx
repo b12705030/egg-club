@@ -126,7 +126,7 @@ function RecipeDetail() {
           alt={recipe.title}
           style={{ width: '100%', maxHeight: '300px', objectFit: 'cover' }}
         />
-        <div className="heart-icon" onClick={toggleLike}>
+        <div className="heart-icon-detail" onClick={toggleLike}>
           {liked ? <FilledHeart color="#e74c3c" /> : <EmptyHeart />}
         </div>
       </div>
@@ -167,7 +167,8 @@ function RecipeDetail() {
             alignItems: 'center',
             color: '#a8875d',
             fontWeight: 'bold',
-            fontSize: '0.9rem'
+            fontSize: '0.9rem',
+            marginBottom: '12px'
           }}>
             <div style={{
               backgroundColor: '#FFCD4E',
