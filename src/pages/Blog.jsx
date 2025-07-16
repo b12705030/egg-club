@@ -8,6 +8,7 @@ import { FiHeart } from 'react-icons/fi'
 function Blog() {
   const { profile, loading } = useProfile()
   const [recipes, setRecipes] = useState([])
+  const [searchTerm, setSearchTerm] = useState('')
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -29,11 +30,24 @@ function Blog() {
 
   if (loading) return <p>載入中...</p>
 
+  const filteredRecipes = recipes.filter((r) =>
+    r.title.toLowerCase().includes(searchTerm.toLowerCase())
+  )
+
   return (
     <div className="blog-wrapper">
       <div className="blog-container">
+        {/* ✅ 搜尋欄 */}
+        <input
+          type="text"
+          className="search-bar"
+          placeholder="🔍 Search"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+
         <div className="recipe-grid">
-          {recipes.map((r) => (
+          {filteredRecipes.map((r) => (
             <div
               key={r.id}
               className="recipe-card"

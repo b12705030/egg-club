@@ -2,24 +2,36 @@
   background-color: #f3e6d5;
   min-height: 100vh;
   display: flex;
-  justify-content: center; /* 🧩 讓內容在畫面中間 */
+  justify-content: center;
 }
 
 .blog-container {
   padding: 24px 16px;
-  max-width: 480px; /* 📱 限定在手機寬度範圍 */
+  max-width: 480px;
   width: 100%;
+}
+
+/* ✅ 搜尋欄樣式 */
+.search-bar {
+  width: 100%;
+  padding: 10px 16px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  border: none;
+  font-size: 1rem;
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
 .recipe-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   gap: 16px;
 }
 
 .recipe-card {
-  width: 160px;
+  width: calc(50% - 8px); /* ✅ 兩個一排，左右有 gap */
   background-color: #fff;
   border-radius: 16px;
   overflow: hidden;
