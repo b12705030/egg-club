@@ -47,6 +47,7 @@ h2 {
 
 
 .input-row {
+  width: 100%;
   display: flex;
   gap: 12px;
   margin-bottom: 8px;
