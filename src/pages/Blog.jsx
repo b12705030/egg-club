@@ -4,6 +4,7 @@ import { supabase } from '../supabase'
 import { useProfile } from '../ProfileContext'
 import './Blog.css'
 import { FiHeart } from 'react-icons/fi'
+import { FaSearch } from 'react-icons/fa'
 
 function Blog() {
   const { profile, loading } = useProfile()
@@ -37,15 +38,19 @@ function Blog() {
   return (
     <div className="blog-wrapper">
       <div className="blog-container">
-        {/* ✅ 搜尋欄 */}
-        <input
-          type="text"
-          className="search-bar"
-          placeholder="🔍 Search"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+        {/* ✅ 搜尋欄區塊 */}
+        <div className="search-bar-wrapper">
+          <FaSearch className="search-icon" />
+          <input
+            type="text"
+            className="search-bar"
+            placeholder="搜尋食譜"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
 
+        {/* ✅ 食譜卡片 */}
         <div className="recipe-grid">
           {filteredRecipes.map((r) => (
             <div
