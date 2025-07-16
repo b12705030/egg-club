@@ -46,12 +46,22 @@ h2 {
 }
 
 
-.input-row {
+.input-row-detail {
   width: 100%;
   display: flex;
   gap: 12px;
   margin-bottom: 8px;
+  flex-wrap: nowrap; 
 }
+
+.input-row-detail input,
+.input-row-detail textarea {
+  flex: 1 1 0;                   /* ✅ 等比例縮放、不超出 */
+  min-width: 0;                 /* ✅ 允許縮小到很小 */
+  box-sizing: border-box;       /* ✅ 計入 padding，避免撐出邊界 */
+  max-width: 100%;              /* ✅ 避免在小螢幕爆版 */
+}
+
 
 input,
 textarea {

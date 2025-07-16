@@ -116,11 +116,11 @@ function AddRecipe() {
       <div className="add-recipe-form">
         <h2>新增食譜</h2>
         <form onSubmit={handleSubmit}>
-          <div className="input-row">
+          <div className="input-row-detail">
             <input placeholder="標題" value={title} onChange={(e) => setTitle(e.target.value)} />
             <input placeholder="作者" value={authors} onChange={(e) => setAuthors(e.target.value)} />
           </div>
-          <div className="input-row">
+          <div className="input-row-detail">
             <input type="file" accept="image/*" onChange={(e) => setCoverFile(e.target.files[0])} />
           </div>
 
@@ -158,7 +158,7 @@ function AddRecipe() {
 
           <h3 className="section-title">步驟</h3>
           {steps.map((s, idx) => (
-            <div key={idx} className="input-row">
+            <div key={idx} className="input-row-detail">
               <input
                 placeholder="小標題"
                 value={s.step_title}
