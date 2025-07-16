@@ -137,10 +137,10 @@ function RecipeDetail() {
 
       <div style={{
         background: 'white',
-        borderTopLeftRadius: '30px',
-        borderTopRightRadius: '30px',
+        borderTopLeftRadius: '40px',
+        borderTopRightRadius: '40px',
         padding: '24px',
-        marginTop: '-24px',
+        marginTop: '-40px',
         position: 'relative',
         zIndex: 1
       }}>
