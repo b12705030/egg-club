@@ -18,6 +18,7 @@ import TrialRequestForm from './components/TrialRequestForm';
 import ReviewPanel from './pages/ReviewPanel'
 import AccountTools from './pages/AccountTools'
 import RecipeDetail from './pages/RecipeDetail'
+import AddRecipe from './pages/AddRecipe'
 
 function App() {
   const [session, setSession] = useState(null)
@@ -95,6 +96,7 @@ function App() {
           <Route path="review" element={<ReviewPanel />} />
           <Route path="/account-tools" element={<AccountTools />} />
           <Route path="recipe/:id" element={<RecipeDetail />} /> 
+          <Route path="/add-recipe" element={<AddRecipe />} />
         </Route>
       </Routes>
     </BrowserRouter>

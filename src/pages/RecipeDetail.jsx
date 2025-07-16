@@ -9,12 +9,13 @@ import { FaAngleLeft } from "react-icons/fa";
 import './Blog.css'
 import './RecipeDetail.css'
 
+
 function RecipeDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
   const { profile } = useProfile()
   const [recipe, setRecipe] = useState(null)
-  const [sections, setSections] = useState([])
+  const [groupedSections, setGroupedSections] = useState({})
   const [ingredientsMap, setIngredientsMap] = useState({})
   const [stepGroups, setStepGroups] = useState({})
   const [liked, setLiked] = useState(false)
@@ -23,10 +24,7 @@ function RecipeDetail() {
   useEffect(() => {
     async function fetchData() {
       const { data: recipeData } = await supabase
-        .from('recipes')
-        .select('*')
-        .eq('id', id)
-        .single()
+        .from('recipes').select('*').eq('id', id).single()
 
       if (!recipeData) {
         alert('找不到食譜，將返回列表頁')
@@ -40,31 +38,35 @@ function RecipeDetail() {
         .select('id, section, sort_order')
         .eq('recipe_id', id)
         .order('sort_order')
-      setSections(sectionData || [])
+
+      const sectionGroups = {}
+      for (const s of sectionData || []) {
+        const [main, sub] = s.section.split('-')
+        if (!sectionGroups[main]) sectionGroups[main] = []
+        sectionGroups[main].push({ ...s, sub })
+      }
+      setGroupedSections(sectionGroups)
 
       const sectionIds = sectionData?.map(s => s.id) || []
-      if (sectionIds.length > 0) {
-        const { data: ingredients } = await supabase
-          .from('recipe_ingredients')
-          .select('id, section_id, name, amount, sort_order')
-          .in('section_id', sectionIds)
+      const { data: ingredients } = await supabase
+        .from('recipe_ingredients')
+        .select('id, section_id, name, amount, sort_order')
+        .in('section_id', sectionIds)
 
-        const map = {}
-        for (const ing of ingredients || []) {
-          if (!map[ing.section_id]) map[ing.section_id] = []
-          map[ing.section_id].push(ing)
-        }
-        for (const key in map) {
-          map[key].sort((a, b) => a.sort_order - b.sort_order)
-        }
-        setIngredientsMap(map)
+      const map = {}
+      for (const ing of ingredients || []) {
+        if (!map[ing.section_id]) map[ing.section_id] = []
+        map[ing.section_id].push(ing)
       }
+      for (const key in map) {
+        map[key].sort((a, b) => a.sort_order - b.sort_order)
+      }
+      setIngredientsMap(map)
 
       const { data: stepData } = await supabase
         .from('recipe_steps')
         .select('step_title, content, sort_order')
-        .eq('recipe_id', id)
-        .order('sort_order')
+        .eq('recipe_id', id).order('sort_order')
 
       const grouped = {}
       for (const step of stepData || []) {
@@ -96,22 +98,13 @@ function RecipeDetail() {
 
   const toggleLike = async () => {
     if (!profile) return
-
     if (liked) {
-      await supabase
-        .from('liked_recipes')
-        .delete()
-        .eq('user_id', profile.id)
-        .eq('recipe_id', id)
+      await supabase.from('liked_recipes').delete()
+        .eq('user_id', profile.id).eq('recipe_id', id)
       setLiked(false)
       setLikeCount((prev) => Math.max(prev - 1, 0))
     } else {
-      await supabase
-        .from('liked_recipes')
-        .insert({
-          user_id: profile.id,
-          recipe_id: id,
-        })
+      await supabase.from('liked_recipes').insert({ user_id: profile.id, recipe_id: id })
       setLiked(true)
       setLikeCount((prev) => prev + 1)
     }
@@ -122,11 +115,8 @@ function RecipeDetail() {
   return (
     <div style={{ background: '#f5f5f5' }}>
       <div style={{ position: 'relative' }}>
-        <img
-          src={recipe.cover_image_url}
-          alt={recipe.title}
-          style={{ width: '100%', maxHeight: '300px', objectFit: 'cover' }}
-        />
+        <img src={recipe.cover_image_url} alt={recipe.title}
+          style={{ width: '100%', maxHeight: '300px', objectFit: 'cover' }} />
         <div className="heart-icon-detail" onClick={toggleLike}>
           {liked ? <FilledHeart color="#e74c3c" /> : <EmptyHeart />}
         </div>
@@ -136,43 +126,25 @@ function RecipeDetail() {
       </div>
 
       <div style={{
-        background: 'white',
-        borderTopLeftRadius: '30px',
-        borderTopRightRadius: '30px',
-        padding: '24px',
-        marginTop: '-30px',
-        position: 'relative',
-        zIndex: 1
+        background: 'white', borderTopLeftRadius: '30px',
+        borderTopRightRadius: '30px', padding: '24px',
+        marginTop: '-30px', position: 'relative', zIndex: 1
       }}>
         <h3 style={{ marginBottom: '4px' }}>{recipe.title}</h3>
 
-        {/* 🧡 標題與 Like 橫向排版 */}
         <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginBottom: '16px'
+          display: 'flex', justifyContent: 'space-between',
+          alignItems: 'center', marginBottom: '16px'
         }}>
-          <div>
-            <p style={{ color: '#777', marginTop: '4px' }}>{recipe.authors}</p>
-          </div>
+          <div><p style={{ color: '#777', marginTop: '4px' }}>{recipe.authors}</p></div>
           <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            color: '#a8875d',
-            fontWeight: 'bold',
-            fontSize: '0.9rem',
-            marginBottom: '10px'
+            display: 'flex', alignItems: 'center', color: '#a8875d',
+            fontWeight: 'bold', fontSize: '0.9rem', marginBottom: '10px'
           }}>
             <div style={{
-              backgroundColor: '#FFCD4E',
-              borderRadius: '50%',
-              width: '24px',
-              height: '24px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginRight: '8px'
+              backgroundColor: '#FFCD4E', borderRadius: '50%',
+              width: '24px', height: '24px', display: 'flex',
+              alignItems: 'center', justifyContent: 'center', marginRight: '8px'
             }}>
               <FilledHeart color="white" size={12} />
             </div>
@@ -180,28 +152,27 @@ function RecipeDetail() {
           </div>
         </div>
 
-
+        {/* 🍴 材料分群呈現 */}
         <h3 style={{ marginTop: '12px' }}>🍴 材料</h3>
         <div style={{
-          display: 'flex',
-          overflowX: 'auto',
-          paddingBottom: '12px',
-          gap: '16px'
+          display: 'flex', overflowX: 'auto', paddingBottom: '12px', gap: '16px'
         }}>
-          {sections.map((s) => (
-            <div key={s.id} style={{
-              flex: '0 0 auto',
-              background: '#f8f8f8',
-              borderRadius: '16px',
-              padding: '16px',
-              minWidth: '160px'
+          {Object.entries(groupedSections).map(([mainTitle, subs]) => (
+            <div key={mainTitle} style={{
+              flex: '0 0 auto', background: '#f8f8f8', borderRadius: '16px',
+              padding: '16px', minWidth: '180px'
             }}>
-              <h4 style={{ margin: '0 0 8px' }}>✓ {s.section}</h4>
-              <ul style={{ paddingLeft: '16px', margin: 0 }}>
-                {(ingredientsMap[s.id] || []).map((i) => (
-                  <li key={i.id}>{i.name} {i.amount}</li>
-                ))}
-              </ul>
+              <h4 style={{ margin: '0 0 8px' }}>{mainTitle}</h4>
+              {subs.map((sub) => (
+                <div key={sub.id} style={{ marginBottom: '12px' }}>
+                  <strong>{sub.sub}</strong>
+                  <ul style={{ paddingLeft: '16px', margin: 0 }}>
+                    {(ingredientsMap[sub.id] || []).map((i) => (
+                      <li key={i.id}>{i.name} {i.amount}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           ))}
         </div>

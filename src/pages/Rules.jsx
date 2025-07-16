@@ -30,9 +30,12 @@ function Rule() {
 
           {/* ✅ 家長與網管共用：幹部專區 */}
           {['家長', '網管'].includes(profile.identity) && (
-            <div style={{ marginTop: '24px', textAlign: 'center' }}>
+            <div style={{ marginTop: '24px', textAlign: 'center', display: 'flex', justifyContent: 'center', gap: '8px' }}>
               <button onClick={() => navigate('/admin')}>
                 + 幹部專區
+              </button>
+              <button onClick={() => navigate('/add-recipe')}>
+                + 新增食譜
               </button>
             </div>
           )}
