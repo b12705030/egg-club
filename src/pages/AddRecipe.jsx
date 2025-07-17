@@ -16,6 +16,8 @@ function AddRecipe() {
     { step_title: '', content: '' }
   ])
 
+  const [yieldInfo, setYieldInfo] = useState('')
+
   const handleAddSection = () => {
     setSections([...sections, { section: '', bulkText: '' }])
   }
@@ -66,7 +68,7 @@ function AddRecipe() {
 
     const { data: recipeData, error: recipeError } = await supabase
       .from('recipes')
-      .insert({ title, authors, cover_image_url: imageUrl })
+      .insert({ title, authors, cover_image_url: imageUrl, yield_info: yieldInfo })
       .select()
       .single()
 
@@ -122,6 +124,13 @@ function AddRecipe() {
           </div>
           <div className="input-row-detail">
             <input type="file" accept="image/*" onChange={(e) => setCoverFile(e.target.files[0])} />
+          </div>
+          <div className="input-row-detail">
+            <input
+                placeholder="份量（例如：6 個、1 條、約 3～4 人份）"
+                value={yieldInfo}
+                onChange={(e) => setYieldInfo(e.target.value)}
+            />
           </div>
 
           <h3 className="section-title">食材區塊</h3>

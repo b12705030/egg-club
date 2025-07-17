@@ -153,7 +153,14 @@ function RecipeDetail() {
         </div>
 
         {/* 🍴 材料分群呈現 */}
-        <h3 style={{ marginTop: '12px' }}>🍴 材料</h3>
+        <h3 style={{ marginTop: '12px' }}>
+          🍴 材料
+          {recipe.yield_info && (
+            <span style={{ fontSize: '16px', color: '#888', fontWeight: 'normal' }}>
+              （{recipe.yield_info}）
+            </span>
+          )}
+        </h3>
         <div style={{
           display: 'flex', overflowX: 'auto', paddingBottom: '12px', gap: '16px'
         }}>
