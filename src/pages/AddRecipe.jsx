@@ -93,6 +93,7 @@ function AddRecipe() {
       const sectionId = secData.id
 
       const ingInserts = parsedIngredients.map((ing, j) => ({
+        recipe_id: recipeId,
         section_id: sectionId,
         name: ing.name,
         amount: ing.amount,

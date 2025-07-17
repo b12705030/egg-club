@@ -9,19 +9,13 @@ import { FaHeart, FaSearch } from 'react-icons/fa'
 function Blog() {
   const { profile, loading } = useProfile()
   const [recipes, setRecipes] = useState([])
-  const [likedRecipes, setLikedRecipes] = useState(new Set()) // ✅ 喜歡過的食譜 ID 集合
+  const [likedRecipes, setLikedRecipes] = useState(new Set())
   const [searchTerm, setSearchTerm] = useState('')
   const navigate = useNavigate()
 
+  // ✅ 取得喜歡過的食譜
   useEffect(() => {
-    async function fetchData() {
-      const { data, error } = await supabase
-        .from('recipes')
-        .select('*')
-        .order('post_date', { ascending: false })
-
-      if (!error) setRecipes(data)
-
+    async function fetchLikes() {
       if (profile?.id) {
         const { data: liked, error: likeErr } = await supabase
           .from('liked_recipes')
@@ -34,8 +28,30 @@ function Blog() {
       }
     }
 
-    fetchData()
+    fetchLikes()
   }, [profile])
+
+  // ✅ 搜尋食譜（支援模糊搜尋）
+  useEffect(() => {
+    const delayDebounce = setTimeout(async () => {
+      let query = supabase
+        .from('recipes')
+        .select('*')
+        .order('post_date', { ascending: false })
+
+      if (searchTerm.trim()) {
+        // ✅ 模糊搜尋：標題、作者、食材與步驟文字
+        query = query.or(
+          `title.ilike.%${searchTerm}%,authors.ilike.%${searchTerm}%,ingredients_text.ilike.%${searchTerm}%,steps_text.ilike.%${searchTerm}%`
+        )
+      }
+
+      const { data, error } = await query
+      if (!error) setRecipes(data)
+    }, 300) // debounce 300ms
+
+    return () => clearTimeout(delayDebounce)
+  }, [searchTerm])
 
   const toggleLike = async (recipeId) => {
     if (!profile?.id) return alert('請先登入')
@@ -47,11 +63,11 @@ function Blog() {
         .match({ user_id: profile.id, recipe_id: recipeId })
 
       if (error) {
-        console.error('❌ 新增失敗：', error) // ✅ 印出整個錯誤物件
-        alert(`新增喜歡失敗：${error.message}`)
+        console.error('❌ 取消失敗：', error)
+        alert(`取消喜歡失敗：${error.message}`)
         return
       }
-      
+
       setLikedRecipes((prev) => {
         const updated = new Set(prev)
         updated.delete(recipeId)
@@ -60,7 +76,7 @@ function Blog() {
     } else {
       const { error } = await supabase
         .from('liked_recipes')
-        .insert([{ user_id: profile.id, recipe_id: recipeId }]) // ✅ 這裡要加中括號
+        .insert([{ user_id: profile.id, recipe_id: recipeId }])
 
       if (error) {
         console.error('❌ 新增失敗：', error.message)
@@ -72,12 +88,7 @@ function Blog() {
     }
   }
 
-
   if (loading) return <p>載入中...</p>
-
-  const filteredRecipes = recipes.filter((r) =>
-    r.title.toLowerCase().includes(searchTerm.toLowerCase())
-  )
 
   return (
     <div className="blog-wrapper">
@@ -94,7 +105,7 @@ function Blog() {
         </div>
 
         <div className="recipe-grid">
-          {filteredRecipes.map((r) => (
+          {recipes.map((r) => (
             <div
               key={r.id}
               className="recipe-card"
@@ -119,6 +130,12 @@ function Blog() {
             </div>
           ))}
         </div>
+        {/* ✅ 沒有搜尋結果時顯示提示文字 */}
+        {recipes.length === 0 && (
+          <div className="no-results-message">
+            查無符合的食譜，請嘗試其他關鍵字...
+          </div>
+        )}
       </div>
     </div>
   )
